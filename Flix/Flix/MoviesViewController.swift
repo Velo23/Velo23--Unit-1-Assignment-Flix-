@@ -36,8 +36,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                  
                  self.tableView.reloadData()
                  
-                 print(dataDictionary)
-                 
+                
 
                     
                  
@@ -73,6 +72,26 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         return cell
+    }
+    
+    override func prepare(for segue:
+                          UIStoryboardSegue, sender: Any?){
+        
+        
+        
+        print("It AHHHH Coming!")
+        
+        //Find movie that was picked
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)!
+        let movie = movies[indexPath.row]
+        
+        //Pass the selected movie to the details viewCon
+        let detailsViewController = segue.destination as! MovieDetailsViewController
+        detailsViewController.movie = movie
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
     }
     
 
